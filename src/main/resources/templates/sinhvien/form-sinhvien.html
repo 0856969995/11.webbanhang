@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+  <title>Form Sinh Viên</title>
+</head>
+<body>
+<section layout:fragment="content">
+  <h1>Form Sinh Viên</h1>
+    <script>
+        function previewImage(event) {
+            var reader = new FileReader();
+            reader.onload = function(){
+                var output = document.getElementById('imagePreview');
+                output.src = reader.result;
+                output.style.display = 'block';
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
+  <form th:action="@{/sinhvien}" th:object="${sinhVien}" method="post"
+        class="needs-validation" novalidate
+        enctype="multipart/form-data">
+    <p>Tên: <input type="text" th:field="*{ten}" /></p>
+    <p th:if="${#fields.hasErrors('ten')}" th:errors="*{ten}" style="color: red;"></p>
+    <p>Tuổi: <input type="text" th:field="*{tuoi}" /></p>
+    <p th:if="${#fields.hasErrors('tuoi')}" th:errors="*{tuoi}" style="color: red;"></p>
+    <p>Khoa: <input type="text" th:field="*{khoa}" /></p>
+    <p th:if="${#fields.hasErrors('khoa')}" th:errors="*{khoa}" style="color: red;"></p>
+    <p>Ảnh: <input type="file" id="imageInput" name="imageFile" accept="image/*" onchange="previewImage(event)" class="form-control" /></p>
+    <img id="imagePreview" src="#" alt="Your image" style="max-width:200px; max-height:200px; display:none;" />
+    <p><button type="submit" class="btn btn-primary mt-3">Submit</button></p>
+  </form>
+</section>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<body>
+<p><span th:utext="${info}"></span></p>
+<a th:href="@{https://https://www.thymeleaf.org}">Thymeleaf</a>
+<p th:text="${person.name}"></p>
+<p th:text="${person.age}"></p>
+<p th:text="${person.sex}"></p>
+<p th:text="${person.isMarried}"></p>
+<p th:if="${person.isMarried}">Đã kết hôn</p>
+<p th:unless="*{person.isMarried}">Chưa kết hôn</p>
+<p th:text="${person.createTime}"></p>
+<p th:text="${person.language}"></p>
+<div th:switch="${sex}">
+    <p th:case="1">Nam</p>
+    <p th:case="2">Nữ</p>
+    <p th:case="*">Chưa xác định</p>
+</div>
+</body>
+</html>

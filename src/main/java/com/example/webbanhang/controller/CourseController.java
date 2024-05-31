@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+
 @Controller
 @RequestMapping("/course")
 public class CourseController {
@@ -26,6 +27,6 @@ public class CourseController {
     public String create(Course newCourse,Model model)
     {
         courseService.add(newCourse);
-        return "create:/home";
+        return "redirect:/home";
     }
 }

@@ -8,6 +8,6 @@ import java.util.List;
 @Service
 public class CourseService {
     private List<Course> listCourses= new  ArrayList<>();
-    public void addCourse(Course newProduct) {listCourses.add(newProduct);}
+    public void add(Course newProduct) {listCourses.add(newProduct);}
     public List<Course> GetAll() {return listCourses;}
 }

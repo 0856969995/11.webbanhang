@@ -28,5 +28,4 @@ public class CourseController {
         courseService.add(newCourse);
         return "create:/home";
     }
-
 }

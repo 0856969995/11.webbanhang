@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}" lang="">
+<head>
+    <title>Add course</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <!-- Bao gồm thư viện bootstrap-datepicker -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+</head>
+<body>
+<section layout:fragment="content" class="container mt-5">
+    <h1>Add New Product</h1>
+    <form th:action="@{/nhanviens/add}" th:object="${nhanvien}" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+        <div class="mb-3">
+            <label for="tenNhanVien" class="form-label">tenNhanVien:</label>
+            <label for="tenNhanVien"></label><input type="text" th:field="*{tenNhanVien}" class="form-control" id="tenNhanVien" required>
+            <div class="text-danger" th:if="${#fields.hasErrors('tenNhanVien')}" th:errors="*{tenNhanVien}"></div>
+
+            <label for="noiSinh" class="form-label">noiSinh:</label>
+            <label for="noiSinh"></label><input type="text" th:field="*{noiSinh}" class="form-control" id="noiSinh" required>
+            <div class="text-danger" th:if="${#fields.hasErrors('noiSinh')}" th:errors="*{noiSinh}"></div>
+        </div>
+        <div class="mb-3">
+            <label for="startDate" class="form-label">startDate:</label>
+            <input type="text" th:field="*{startDate}" class="form-control datepicker" id="startDate" required>
+            <div class="text-danger" th:if="${#fields.hasErrors('startDate')}" th:errors="*{startDate}"></div>
+
+        </div>
+        <div class="mb-3">
+            <label for="phai" class="form-label">phai:</label>
+            <input type="text" th:field="*{phai}" class="form-control datepicker" id="phai" required>
+            <div class="text-danger" th:if="${#fields.hasErrors('phai')}" th:errors="*{phai}"></div>
+        </div>
+        <div class="mb-3">
+            <label for="phongban" class="form-label">Category:</label>
+            <select th:field="*{phongban.id}" class="form-control" id="phongban" required>
+                <option th:each="phongban : ${phongbans}" th:value="${phongban.id}" th:text="${phongban.name}"></option>
+            </select>
+            <div class="text-danger" th:if="${#fields.hasErrors('phongban.id')}" th:errors="*{phongban.id}"></div>
+        </div>
+        <div class="mb-3">
+            <label for="luong" class="form-label">luong:</label>
+            <input type="text" th:field="*{luong}" class="form-control datepicker" id="luong" required>
+            <div class="text-danger" th:if="${#fields.hasErrors('luong')}" th:errors="*{luong}"></div>
+        </div>
+        <!--
+        <div class="mb-3">
+            <label for="price" class="form-label">Price:</label>
+            <input type="text" th:field="*{price}" class="form-control" id="price" required>
+            <div class="text-danger" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></div>
+        </div>
+        <div class="mb-3">
+            <label for="price" class="form-label">Quantity:</label>
+            <input type="text" th:field="*{quantity}" class="form-control" id="quantity" required>
+            <div class="text-danger" th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}"></div>
+        </div>
+        <div class="mb-3">
+            <label for="category" class="form-label">Category:</label>
+            <select th:field="*{category.id}" class="form-control" id="category" required>
+                <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
+            </select>
+            <div class="text-danger" th:if="${#fields.hasErrors('category.id')}" th:errors="*{category.id}"></div>
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Description:</label>
+            <textarea th:field="*{description}" class="form-control" id="description" required></textarea>
+            <div class="text-danger" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></div>
+        </div>
+        -->
+        <div class="mb-3">
+            <label for="image" class="form-label">Image:</label>
+            <input type="file" name="images" class="form-control" id="image" required>
+            <div class="text-danger" th:if="${#fields.hasErrors('image')}" th:errors="*{image}"alt="Course Image" th:width="150", th:height="100"></div>
+        </div>
+        <button type="submit" class="btn btn-primary">Add nhan vien</button>
+        <a th:href="@{/nhanviens}" class="btn btn-link">Cancel</a>
+    </form>
+</section>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Kích hoạt datepicker -->
+<script>
+    $(document).ready(function(){
+        $('.datepicker').datepicker({
+            format: 'yyyy-mm-dd', // Định dạng ngày tháng
+            autoclose: true, // Tự động đóng sau khi chọn
+            todayHighlight: true // Hiển thị ngày hiện tại
+        });
+    });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
